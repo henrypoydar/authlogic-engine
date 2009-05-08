@@ -1,0 +1,30 @@
+- render :layout => 'layouts/users' do
+
+  %h2
+    Edit profile
+  
+  - form_for(@user) do |f|
+    = f.error_messages(:header_message => nil, :message => 'Please correct the following errors and try again:')
+  
+    %p
+      = f.label :username
+      = f.text_field :username
+    
+    %p
+      = f.label :email
+      = f.text_field :email
+    
+    %p
+      = f.label :password
+      = f.password_field :password
+    
+    %p
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
+
+    %p
+      = f.label :time_zone
+      = f.time_zone_select('time_zone', ActiveSupport::TimeZone.us_zones.reverse)
+
+    %p
+      = f.submit 'Update'
