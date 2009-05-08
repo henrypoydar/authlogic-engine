@@ -35,4 +35,5 @@ The plugin provides the following, all of which can be overidden and/or extended
 ## License
 
 Authlogic is copyright (c) Ben Johnson of Binary Logic, released under the MIT license
+
 Copyright (c) Henry Poydar, released under the MIT license
