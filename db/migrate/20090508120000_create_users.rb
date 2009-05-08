@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration
       
       t.string          :email, :username, :first_name, :last_name
       t.string          :crypted_password, :password_salt, :persistence_token
-      t.datetime        :remember_token_expires_at
       t.string          :time_zone, :default => 'Eastern Time (US & Canada)'
       t.timestamps
       
