@@ -10,6 +10,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string          :time_zone, :default => 'Eastern Time (US & Canada)'
       t.timestamps
       
+      t.boolean         :active, :default => true
+      
       # Magic columns automatically maintained by Authlogic
       t.integer         :login_count,         :null => false, :default => 0
       t.integer         :failed_login_count,  :null => false, :default => 0
