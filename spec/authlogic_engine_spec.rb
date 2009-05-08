@@ -6,11 +6,3 @@ describe AuthlogicEngine do
   end
   
 end
-
-describe AuthlogicEngine::Helper do
-  
-  it 'should have specifications' do
-    
-  end
-  
-end
