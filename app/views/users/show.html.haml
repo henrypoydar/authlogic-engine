@@ -1,0 +1,15 @@
+- render :layout => 'layouts/users' do
+
+  %h2
+    = current_user.username
+    
+  %p
+    Email address: 
+    = current_user.email
+    
+  %p
+    Time zone: 
+    = current_user.time_zone
+    
+  %p
+    = link_to 'Edit profile', user_path(:current)

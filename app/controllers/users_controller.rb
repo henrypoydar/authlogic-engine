@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  before_filter :ensure_user_is_authenticated, :only => [:show, :edit]
+  
   def new
     @user = User.new
   end
@@ -12,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "Registration successful"
-      redirect_to root_url
+      redirect_to AuthlogicEngine.signup_destination
     else
       render :action => 'new'
     end
@@ -26,7 +28,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update_attributes(params[:user])
       flash[:success] = "Successfully updated profile"
-      redirect_to root_url
+      redirect_to :action => 'show'
     else
       render :action => 'edit'
     end

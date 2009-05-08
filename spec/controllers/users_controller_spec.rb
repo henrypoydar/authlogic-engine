@@ -16,10 +16,8 @@ describe UsersController do
       params_from(:get, new_user_path).should == action
     end
     
-    it 'should route new to /signup' do
-      action = {:controller => 'users', :action => 'new'}
-      route_for(action).should == signup_path
-      params_from(:get, signup_path).should == action
+    it 'should route GET /signup to new' do
+      params_from(:get, '/signup')[:action].should == 'new'
     end
 
     it 'should route to create' do
@@ -38,6 +36,16 @@ describe UsersController do
       action = {:controller => 'users', :action => 'update', :id => '1'}
       route_for(action).should == {:path => user_path(1), :method => :put}
       params_from(:put, user_path(1)).should == action
+    end
+    
+    it 'should route to show' do
+      action = {:controller => 'users', :action => 'show', :id => '1'}
+      route_for(action).should == user_path(1)
+      params_from(:get, user_path(1)).should == action
+    end
+    
+    it 'should route GET /profile to show' do
+      params_from(:get, '/profile')[:action].should == 'show'
     end
     
   end
@@ -77,10 +85,10 @@ describe UsersController do
         flash[:success].should_not be_nil
       end
       
-      it 'should redirect to the show action for the newly created object' do
+      it 'should redirect to the AuthlogicEngine.signup_destination target' do
         do_create
         assigns[:user].should == @user
-        response.should redirect_to(root_url)
+        response.should redirect_to(AuthlogicEngine.signup_destination)
       end
       
     end
@@ -142,10 +150,10 @@ describe UsersController do
         flash[:success].should_not be_nil
       end
 
-      it 'should redirect to the root url' do
+      it 'should redirect to the show method' do
         do_update
         assigns[:user].should == @user
-        response.should redirect_to(root_url)
+        response.should redirect_to(:action => 'show')
       end
     
     end
@@ -167,6 +175,24 @@ describe UsersController do
         response.should render_template('edit')
       end
       
+    end
+    
+  end
+  
+  describe '#show' do
+    
+    it "should render the show template" do
+      controller.stub!(:current_user).and_return(mock_model(User))
+      get(:show)
+      flash[:error].should be_nil
+      response.should render_template('show')
+    end
+    
+    it "should redirect to login if there is no current user" do
+      controller.stub!(:current_user).and_return(nil)
+      get(:show)
+      flash[:error].should_not be_nil
+      response.should redirect_to(login_path)
     end
     
   end

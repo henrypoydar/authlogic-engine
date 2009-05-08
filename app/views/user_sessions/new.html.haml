@@ -1,9 +1,9 @@
 - render :layout => 'layouts/users' do
 
   %h2
-    Sign up
+    Login
   
-  - form_for(@user) do |f|
+  - form_for(@user_session) do |f|
     = f.error_messages(:header_message => nil, :message => 'Please correct the following errors and try again:')
   
     %p
@@ -11,16 +11,12 @@
       = f.text_field :username
     
     %p
-      = f.label :email
-      = f.text_field :email
-    
-    %p
       = f.label :password
       = f.password_field :password
+      
+    %p
+      = f.check_box :remember_me
+      = f.label :remember_me, :class => 'check_box'
     
     %p
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation
-
-    %p
-      = f.submit 'Sign up'
+      = f.submit 'Login'

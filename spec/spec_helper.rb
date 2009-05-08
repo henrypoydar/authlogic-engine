@@ -4,3 +4,5 @@ rescue LoadError
   puts "You need to install rspec in your base application"
   exit
 end
+
+

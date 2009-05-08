@@ -25,12 +25,22 @@ Direct installation:
 
 ## Usage
 
-The plugin provides the following, all of which can be overidden and/or extended (along with the authlogic functionality):
+The plugin provides the following paths and controller methods, all of which can be overridden and/or extended (along with the authlogic functionality):
 
 * `/signup`, which uses UsersController#new
 * `/profile`, which uses UsersController#show, #edit and #update
 * `/login` and `/logout`, which use UserSessions#new, #destroy
 * A `current_user` helper method for use across controllers and views in your app
+
+A controller helper method for use with a before_filter throughout your application is also provided:
+
+    ensure_user_is_authenticated
+
+To quickly override the successful login, logout or signup redirect destination, add the following to an environment or initializer: (Defaults to '/')
+
+    AuthlogicEngine.login_destination = your_custom_path
+    AuthlogicEngine.logout_destination = your_custom_path
+    AuthlogicEngine.signup_destination = your_custom_path
 
 ## License
 
