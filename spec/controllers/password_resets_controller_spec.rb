@@ -36,7 +36,6 @@ describe PasswordResetsController do
     
   end
   
-
   describe '#new' do
     
     before :each do
