@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       
       t.string          :email, :username, :first_name, :last_name
       t.string          :crypted_password, :password_salt, :persistence_token
+      t.string          :perishable_token, :default => "", :null => false 
       t.string          :time_zone, :default => 'Eastern Time (US & Canada)'
       t.timestamps
       
@@ -25,6 +26,7 @@ class CreateUsers < ActiveRecord::Migration
     add_index :users, :email
     add_index :users, :username  
     add_index :users, :persistence_token
+    add_index :users, :perishable_token  
     add_index :users, :last_request_at
   
   end

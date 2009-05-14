@@ -34,7 +34,7 @@ The plugin provides the following paths and controller methods, all of which can
 
 A controller helper method for use with a before_filter throughout your application is also provided:
 
-    ensure_user_is_authenticated
+    require_logged_in_user
 
 To quickly override the successful login, logout or signup redirect destination, add the following to an environment or initializer: (Defaults to '/')
 

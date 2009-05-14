@@ -1,0 +1,17 @@
+- render :layout => 'layouts/users' do
+
+  %h2
+    Forgotten password
+    
+  %p
+    Fill out the form below and instructions to reset your password will be emailed to you.
+    
+  - form_tag password_resets_path do
+
+    %p
+      %label
+        Email
+      = text_field_tag "email"
+
+    %p
+      = submit_tag "Reset my password"

@@ -5,4 +5,4 @@ rescue LoadError
   exit
 end
 
-
+require File.dirname(__FILE__) + '/user_sim'

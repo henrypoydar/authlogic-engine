@@ -1,0 +1,18 @@
+- render :layout => 'layouts/users' do
+
+  %h2
+    Reset password
+    
+  - form_for @user, :url => password_reset_path, :method => :put do |f|
+    = f.error_messages(:header_message => nil, :message => 'Please correct the following errors and try again:')
+  
+    %p
+      = f.label :password, 'New password'
+      = f.password_field :password 
+      
+    %p
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
+      
+    %p
+      = f.submit "Update my password and log me in"
